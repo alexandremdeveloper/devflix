@@ -1,0 +1,30 @@
+<h1 class="netflix-title">Devflix</h1>
+
+<div class="carousel-container carousel-centered">
+  <button class="carousel-arrow left" (click)="prevSlide()">&#8592;</button>
+  <div class="carousel-slide carousel-single" *ngIf="featured.length">
+    <img [src]="'https://image.tmdb.org/t/p/original' + featured[currentSlide]?.backdrop_path"
+         [alt]="featured[currentSlide]?.title"
+         class="carousel-image">
+    <div class="carousel-caption">
+      <h2>{{ featured[currentSlide]?.title }}</h2>
+      <p>{{ featured[currentSlide]?.overview || 'Sem descrição disponível.' }}</p>
+    </div>
+  </div>
+  <button class="carousel-arrow right" (click)="nextSlide()">&#8594;</button>
+</div>
+
+<div class="netflix-grid">
+  <div *ngFor="let movie of movies" class="netflix-card">
+    <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+         [alt]="movie.title"
+         class="netflix-poster">
+    <div class="netflix-info">
+      <h2 class="netflix-movie-title">{{ movie.title }}</h2>
+      <p class="netflix-overview">{{ movie.overview || 'Sem descrição disponível.' }}</p>
+      <span class="netflix-rating">
+        ⭐ {{ movie.vote_average }} | {{ movie.release_date | date:'yyyy' }}
+      </span>
+    </div>
+  </div>
+</div>
